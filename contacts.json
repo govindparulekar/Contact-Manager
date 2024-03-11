@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Govind",
+        "contact":"9702241917",
+        "email":"govindvp511@gmail.com"
+    },
+    {
+        "id": 2,
+        "name": "Sunny",
+        "contact":"9702241917",
+        "email":"govindvp511@gmail.com"
+    },
+    {
+        "id": 3,
+        "name": "Vedant",
+        "contact":"9702241917",
+        "email":"govindvp511@gmail.com"
+    },
+    {
+        "id": 4,
+        "name": "Kharde",
+        "contact":"9702241917",
+        "email":"govindvp511@gmail.com"
+    }
+]
