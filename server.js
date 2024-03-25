@@ -7,18 +7,18 @@ let Contact = require("./models/Contact");
 //Server Initialisation
 const app = express();
 const port = 3000;
-// const uri =
-//   "mongodb+srv://govindvp511:uXBhO9TQYLawaG1M@cluster0.ky8bhcg.mongodb.net/DBname";
-// mongoose
-//   .connect(
-//     uri
-//     //   {
-//     //   useNewUrlParser: true,
-//     //   useUnifiedTopology: true,
-//     // }
-//   )
-//   .then(() => console.log("Databse connected.."))
-//   .catch((err) => console.log(err));
+const uri =
+  "mongodb+srv://govindvp511:uXBhO9TQYLawaG1M@cluster0.ky8bhcg.mongodb.net/DBname";
+mongoose
+  .connect(
+    uri
+    //   {
+    //   useNewUrlParser: true,
+    //   useUnifiedTopology: true,
+    // }
+  )
+  .then(() => console.log("Databse connected.."))
+  .catch((err) => console.log(err));
 
 //Middlewares
 app.use(express.static('public'));
@@ -29,22 +29,26 @@ app.use(express.urlencoded({ extended: true }));
 
 //Get all contacts
 app.get("/contacts", (req, res) => {
-  res.render("index.ejs");
-  // Contact.find().then(contacts=>{
-  //   //res.json(contacts);
+  //res.render("index.ejs");
+  Contact.find().then(contacts=>{
+    res.render('index.ejs',{
+      contacts : contacts
+    })
+    //res.json(contacts);
     
-  // })
-  // .catch(err=>{
-  //   res.status(404).json({msg:"No contacts found"});
-  // });
+  })
+  .catch(err=>{
+    res.status(404).json({msg:"No contacts found"});
+  });
 
 });
 //Get contact by name
 app.get("/getContact/", (req, res) => {
-  let name = req.body.name;
-  //console.log(name);
+  let cid = req.body.cid;
+  console.log(cid);
  
-   Contact.find({name : name}).then(contact=>{
+   Contact.find({_id : cid})
+   .then(contact=>{
     if(contact.length!=0) {
       res.json(contact);
     }
@@ -68,6 +72,8 @@ app.post("/addContact", async (req, res) => {
   const newContact = new Contact({
     name: contact.name,
     contact: contact.contact,
+    email: contact.email,
+    addr : contact.addr
   });
 
   await newContact.save()
