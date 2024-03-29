@@ -3,7 +3,8 @@ let express = require("express");
 let contacts = require("./contacts.json");
 const mongoose = require("mongoose");
 let Contact = require("./models/Contact");
-
+let axios = require("axios");
+//vedant
 //Server Initialisation
 const app = express();
 const port = 3000;
@@ -73,6 +74,23 @@ app.post("/addContact", async (req, res) => {
   });
 
   await newContact.save().then(res.status(200).json({ msg: "contact added" }));
+});
+
+app.put("/editContact", (req, res) => {
+  let cid = req.query.cid;
+  console.log(cid);
+
+  //get the contact matching contact id
+
+  axios
+    .get("https://www.google.com/")
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      // console.log(`error : ${err}`);
+      res.json({ error: err });
+    });
 });
 
 //app.put
