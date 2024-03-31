@@ -3,7 +3,7 @@ let express = require("express");
 let contacts = require("./contacts.json");
 const mongoose = require("mongoose");
 let Contact = require("./models/Contact");
-let axios = require("axios");
+//let axios = require("axios");
 //vedant
 //Server Initialisation
 const app = express();
