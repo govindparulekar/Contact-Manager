@@ -36,4 +36,53 @@ body{
 }
 .list-group-item{
     padding: 10px 0;
+    position: relative;
 }
+.list-group-item:hover{
+    cursor: pointer;
+}
+.list-group-item:hover .contact-action-cont{
+    visibility: visible;
+    
+}
+
+.action img{
+    width: 20px;
+    height: 20px;
+}
+
+.action{
+    padding-right: 15px;
+}
+.contact-action-cont{
+    visibility: hidden;
+}
+
+#view-contact-modal .row{
+    padding-bottom: 20px;
+}
+
+/* For Webkit (Chrome, Safari, etc.) */
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+    visibility: hidden;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #e0e0e0;
+    
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  
+  

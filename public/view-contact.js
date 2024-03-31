@@ -9,9 +9,11 @@ let getContactModalType = getContactModal[0].dataset.type;
 // console.log(actionBtnCont[1].dataset.cid);
 
 actionBtnCont.on("click", (actionBtn) => {
+  console.log(actionBtn);
   let cid = actionBtn.currentTarget.dataset.cid;
   console.log(actionBtn.currentTarget.dataset.cid);
   let action = actionBtn.target.id;
+  console.log(action);
   //let cid = actionBtn.target.par
   switch (action) {
     case "info":
@@ -30,6 +32,7 @@ actionBtnCont.on("click", (actionBtn) => {
 });
 
 function showContact(cid) {
+
   let modalData = $("div.modal-data");
   // console.log(modalData);
   let contact = null;

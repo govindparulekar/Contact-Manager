@@ -39,10 +39,10 @@
 
                         </div>
 
-                        <div  data-cid="<%= contact._id %>" class="contact-action-cont d-flex flex">
-                            <div class="action" id="info" data-bs-toggle="modal" data-bs-target="#view-contact-modal">v</div>
-                            <div class="action" id="edit"  data-bs-toggle="modal" data-bs-target="#get-contact-modal">e</div>
-                            <div class="action" id="delete">D</div>
+                        <div id="overlay"  data-cid="<%= contact._id %>" class="contact-action-cont d-flex flex">
+                            <div class="action"  data-bs-toggle="modal" data-bs-target="#view-contact-modal"><img src="images/info.png" alt="info" id="info"></div>
+                            <div class="action"   data-bs-toggle="modal" data-bs-target="#get-contact-modal"><img src="images/edit.png" alt="edit" id="edit"></div>
+                            <div class="action" ><img src="images/delete.png" alt="delete" id="delete"></div>
                         </div>
                     </li>
 
