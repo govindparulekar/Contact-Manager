@@ -1,0 +1,26 @@
+body{
+    height: 100vh;
+    padding-top: 50px;
+}
+
+.card{
+    height: 500px;
+    max-height: 70%;
+    margin: auto;
+    position: relative;
+    
+    
+}
+
+#no-contacts-msg{
+    position: absolute;
+    top:46%;
+    left:20%
+}
+#add-contact{
+    width: 45px;
+    height: 45px;
+    position: absolute;
+    top: 74%;
+    left: 74%;
+}

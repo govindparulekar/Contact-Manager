@@ -15,10 +15,11 @@ actionBtnCont.on("click", (actionBtn) => {
       showContact(cid);
       break;
     case "edit":
+      
       editContact(cid);
       break;
-    case "delte":
-      deleteContact();
+    case "delete":
+      deleteContact(cid);
       break;
     default:
       break;
@@ -79,7 +80,8 @@ function showContact(cid) {
 function editContact(cid) {
   //Get input fields
   let editFields = $("#edit-contact-modal :input");
-  console.log(editFields);
+  $('#cid').val(cid);
+  console.log($('#cid').val());
 
   let contact = null;
   console.log(cid);
@@ -112,7 +114,90 @@ function editContact(cid) {
           default:
             break;
         }
+        
       });
     });
 }
-function deleteContact(params) {}
+
+
+
+$("#edit-contact-modal form").on("submit",function(event){
+    event.preventDefault();
+    console.log('prevented');
+
+    //get cid
+    let cid = $("#edit-contact-modal #cid").val();
+    console.log(cid);
+
+    //get input fields
+
+    let editFields = $("#edit-contact-modal :input");
+    let name,contact,email,addr = null;
+    editFields.each(function() {
+        editFieldInp = $(this);
+        switch (editFieldInp.attr("id")) {
+            case "name":
+             name = editFieldInp.val();
+            break;
+            case "contact":
+             contact = editFieldInp.val();
+            break;
+            case "email":
+             email = editFieldInp.val();
+            break;
+            case "addr":
+             addr = editFieldInp.val();
+            break;
+        
+            default:
+            break;
+        }
+    });
+    
+
+    //console.log(contact);
+    let contactData = {
+        name : name,
+        contact : contact,
+        email : email,
+        addr : addr,
+        cid : cid
+    }
+    console.log(contactData);
+    axios.post("/editContact",contactData)
+    .then(data=>{
+        alert(data.data.msg);
+        window.location.href = "/contacts";
+
+    })
+    .catch(error=>{
+        alert(error);
+    });
+
+
+
+
+
+});
+
+$("#add-contact").on("click",event=>{
+  console.log(event);
+
+})
+
+
+    
+
+function deleteContact(cid) {
+    console.log(cid);
+    axios.delete("/deleteContact",{ data: { cid: cid } })
+    .then(result=>{
+        alert(result.data.msg);
+        window.location.href = "/contacts";
+    })
+    .catch(error=>{
+        alert("error : "+error);
+    });
+}
+
+

@@ -33,13 +33,19 @@ app.get("/contacts", (req, res) => {
   //res.render("index.ejs");
   Contact.find()
     .then((contacts) => {
-      res.render("index.ejs", {
-        contacts: contacts,
-      });
+
+      if(contacts.length!=0){
+        res.render("index.ejs", {
+          contacts: contacts,
+        });
+      }
+      else{
+        res.render("index.ejs")
+      }
       //res.json(contacts);
     })
     .catch((err) => {
-      res.status(404).json({ msg: "No contacts found" });
+      res.status(404).json({ msg: "No contacts found", error : err });
     });
 });
 //Get contact by name
@@ -76,24 +82,44 @@ app.post("/addContact", async (req, res) => {
   await newContact.save().then(res.status(200).json({ msg: "contact added" }));
 });
 
-app.put("/editContact", (req, res) => {
-  let cid = req.query.cid;
-  console.log(cid);
+app.post("/editContact", (req, res) => {
+  let contact = req.body;
+  console.log(contact);
 
-  //get the contact matching contact id
-
-  axios
-    .get("https://www.google.com/")
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      // console.log(`error : ${err}`);
-      res.json({ error: err });
-    });
+  Contact.findByIdAndUpdate(contact.cid, contact, { new: true })
+      .then(updatedContact => {
+        if (!updatedContact) {
+          console.error('Contact not found');
+          return;
+        }
+        
+        res.status(200).json({msg: "Contact Updated successfully"});
+      })
+      .catch(error => {
+        console.error('Error updating contact:', error);
+        res.status(400).json({msg: "error updating contact"});
+      })
+      .finally(() => {
+        //mongoose.disconnect(); // Close the connection when done
+       // res.redirect("/contacts");
+      });
 });
 
-//app.put
+app.delete("/deleteContact",(req,res)=>{
+  let cid = req.body.cid;
+  console.log("cid: "+cid);
+  Contact.findOneAndDelete({ _id: cid })
+  .then(deletedContact => {
+    if (!deletedContact) {
+      res.status(404).json({msg:"Contact not found"});
+      return;
+    }
+    res.status(200).json({msg:"Contact Deleted successfully!"});
+  })
+  .catch(error => {
+    res.status(400).json({msg:"Error deleting contact",error: error});
+  });
+});
 
 //Start the server
 app.listen(port, () => console.log("Server is listing on 3000"));
