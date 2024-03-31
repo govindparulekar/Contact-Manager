@@ -3,6 +3,9 @@
 let actionBtnCont = $(".contact-action-cont");
 console.log(actionBtnCont);
 
+let getContactModal = $("#get-contact-modal");
+let getContactModalType = getContactModal[0].dataset.type;
+
 // console.log(actionBtnCont[1].dataset.cid);
 
 actionBtnCont.on("click", (actionBtn) => {
@@ -15,7 +18,7 @@ actionBtnCont.on("click", (actionBtn) => {
       showContact(cid);
       break;
     case "edit":
-      
+      getContactModal[0].dataset.type = "edit"
       editContact(cid);
       break;
     case "delete":
@@ -79,7 +82,7 @@ function showContact(cid) {
 
 function editContact(cid) {
   //Get input fields
-  let editFields = $("#edit-contact-modal :input");
+  let editFields = $("#get-contact-modal :input");
   $('#cid').val(cid);
   console.log($('#cid').val());
 
@@ -121,17 +124,20 @@ function editContact(cid) {
 
 
 
-$("#edit-contact-modal form").on("submit",function(event){
+$("#get-contact-modal form").on("submit",function(event){
     event.preventDefault();
     console.log('prevented');
 
     //get cid
-    let cid = $("#edit-contact-modal #cid").val();
-    console.log(cid);
+    let cid = $("#get-contact-modal #cid").val();
+
+    //get action type ( add or edir)
+    let actionType = getContactModal[0].dataset.type;
+    console.log(actionType);
 
     //get input fields
 
-    let editFields = $("#edit-contact-modal :input");
+    let editFields = $("#get-contact-modal :input");
     let name,contact,email,addr = null;
     editFields.each(function() {
         editFieldInp = $(this);
@@ -164,15 +170,33 @@ $("#edit-contact-modal form").on("submit",function(event){
         cid : cid
     }
     console.log(contactData);
-    axios.post("/editContact",contactData)
-    .then(data=>{
+
+    if(actionType == "add"){
+
+      axios.post("/addContact",contactData)
+      .then(data=>{
         alert(data.data.msg);
         window.location.href = "/contacts";
 
-    })
-    .catch(error=>{
-        alert(error);
-    });
+      })
+      .catch(error=>{
+          alert(error);
+      });
+
+    }
+    else{
+      axios.post("/editContact",contactData)
+      .then(data=>{
+          alert(data.data.msg);
+          window.location.href = "/contacts";
+
+      })
+      .catch(error=>{
+          alert(error);
+      });
+
+    }
+    
 
 
 
@@ -180,8 +204,12 @@ $("#edit-contact-modal form").on("submit",function(event){
 
 });
 
+
+
 $("#add-contact").on("click",event=>{
   console.log(event);
+
+  getContactModal[0].dataset.type = "add";
 
 })
 

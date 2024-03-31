@@ -41,7 +41,7 @@
 
                         <div  data-cid="<%= contact._id %>" class="contact-action-cont d-flex flex">
                             <div class="action" id="info" data-bs-toggle="modal" data-bs-target="#view-contact-modal">v</div>
-                            <div class="action" id="edit"  data-bs-toggle="modal" data-bs-target="#edit-contact-modal">e</div>
+                            <div class="action" id="edit"  data-bs-toggle="modal" data-bs-target="#get-contact-modal">e</div>
                             <div class="action" id="delete">D</div>
                         </div>
                     </li>
@@ -51,16 +51,16 @@
             
             }%>
             
+            <image id="add-contact" data-bs-toggle="modal" data-bs-target="#get-contact-modal" src="images/plus.png"></image>
           </ul>
 
-          <image id="add-contact" src="images/plus.png"></image>
-
-        </div>
+          
+          </div>
       </div>
     
 
       
-      <%- include('partials/edit-contact-modal') %>
+      <%- include('partials/get-contact-modal') %>
       <!--View-Contact-Modal -->
       <%-  include('partials/view-contact-modal') %>
       

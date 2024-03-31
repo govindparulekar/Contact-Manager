@@ -7,9 +7,10 @@ body{
     height: 500px;
     max-height: 70%;
     margin: auto;
-    position: relative;
     
-    
+}
+.card-body{
+    height: 100%;
 }
 
 #no-contacts-msg{
@@ -20,7 +21,19 @@ body{
 #add-contact{
     width: 45px;
     height: 45px;
-    position: absolute;
+    position: sticky;
     top: 74%;
     left: 74%;
+    bottom: 10%;
+}
+
+.list-group{
+    height: 90%;
+    position: relative;
+    
+    overflow-y: auto;
+
+}
+.list-group-item{
+    padding: 10px 0;
 }
