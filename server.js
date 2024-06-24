@@ -7,7 +7,7 @@ let axios = require("axios");
 //vedant
 //Server Initialisation
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3030;
 const uri =
   "mongodb+srv://govindvp511:uXBhO9TQYLawaG1M@cluster0.ky8bhcg.mongodb.net/DBname";
 mongoose
