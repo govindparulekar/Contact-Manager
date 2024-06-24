@@ -85,4 +85,39 @@ body{
     background: #555;
   }
   
+
+
+  /* Navbar */
+ 
+ 
+  .navbar {
+    background-color: white;
+    overflow: hidden;
+  }
+ 
+  .navbar a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  .navbar .greeting {
+  
+    padding: 14px 20px;
+    color: black;
+  }
+  #logout-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 8px 4px;
+    cursor: pointer;
+    float: right;
+  }
+  .logout-btn:hover {
+    background-color: #da190b;
+  }
+
   

@@ -179,7 +179,7 @@ $("#get-contact-modal form").on("submit",function(event){
       axios.post("/addContact",contactData)
       .then(data=>{
         alert(data.data.msg);
-        window.location.href = "/contacts";
+        window.location.href = "/";
 
       })
       .catch(error=>{
@@ -191,7 +191,7 @@ $("#get-contact-modal form").on("submit",function(event){
       axios.post("/editContact",contactData)
       .then(data=>{
           alert(data.data.msg);
-          window.location.href = "/contacts";
+          window.location.href = "/";
 
       })
       .catch(error=>{
@@ -224,11 +224,26 @@ function deleteContact(cid) {
     axios.delete("/deleteContact",{ data: { cid: cid } })
     .then(result=>{
         alert(result.data.msg);
-        window.location.href = "/contacts";
+        window.location.href = "/";
     })
     .catch(error=>{
         alert("error : "+error);
     });
 }
 
+const logoutBtn = $("#logout-btn");
+
+logoutBtn.on("click",()=>{
+
+  console.log("logout");
+
+  axios.post("/logout")
+  .then(res=>{
+    alert(res.data.msg);
+    window.location.href = "/login";
+  })
+  .catch(err=>{
+    alert(err.data.msg);
+  });
+})
 

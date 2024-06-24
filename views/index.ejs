@@ -15,6 +15,11 @@
     <title>Document</title>
 </head>
 <body class="vh-100 ">   
+
+    <div class="navbar d-flex justify-content-between">
+        <span class="greeting">Hello, <%= username %>!</span>
+        <button id="logout-btn">Logout</button>
+      </div>
     
 
     <div class="card" style="width: 18rem;">
@@ -65,6 +70,10 @@
       <%-  include('partials/view-contact-modal') %>
       
       <script  src="view-contact.js"></script>
+
+      <script>
+        axios.post()
+        </script>
 
 </body>
 </html>
