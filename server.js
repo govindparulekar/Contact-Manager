@@ -1,12 +1,11 @@
 //Imports
 let express = require("express");
 const mongoose = require("mongoose");
-let authRouter = require("./routes/auth");
-const sessions = require('express-session');
-const contactsController = require('./controller/contactsController');
-const authController = require('./controller/authController')
-const isAuth = require('./Middleware/isAuth');
-const path = require('path');
+const sessions = require("express-session");
+const contactsController = require("./controller/contactsController");
+const authController = require("./controller/authController");
+const isAuth = require("./Middleware/isAuth");
+const path = require("path");
 //let axios = require("axios");
 //vedant
 //Server Initialisation
@@ -26,15 +25,13 @@ mongoose
   .then(() => console.log("Databse connected.."))
   .catch((err) => console.log(err));
 
-
-
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 
 //Middlewares
 app.use(
   sessions({
-    secret: 'some secret',
+    secret: "some secret",
     cookie: {
       maxAge: 1000 * 60 * 60 * 24, // 24 hours
     },
@@ -45,12 +42,11 @@ app.use(
 app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/user",authRouter);
 
 //Routes
 
 //Contacts
-app.get("/", isAuth,  contactsController.getAllContacts);
+app.get("/", isAuth, contactsController.getAllContacts);
 
 app.get("/getContact", contactsController.getSingleContact);
 
@@ -60,24 +56,19 @@ app.post("/editContact", contactsController.editContact);
 
 app.delete("/deleteContact", contactsController.deleteContact);
 
+//Login and register
 
-//Login and register 
-
-app.get("/user",(req,res)=>{
-  res.render("login.ejs");
-})
-
-app.get("/register",(req,res)=>{
+app.get("/register", (req, res) => {
   res.render("register.ejs");
-})
+});
 
-app.get("/login", (req,res)=>{
+app.get("/login", (req, res) => {
   res.render("login.ejs");
-})
+});
 
-app.post("/register",authController.registerUser);
-app.post("/login",authController.loginUser);
-app.post("/logout",authController.logoutUser)
+app.post("/register", authController.registerUser);
+app.post("/login", authController.loginUser);
+app.post("/logout", authController.logoutUser);
 
 //Start the server
 app.listen(port, () => console.log("Server is listing on 3000"));
