@@ -1,41 +1,35 @@
-window.addEventListener("load",function(){
-    const regForm = document.getElementById("register-form");
-    const formFields  = document.getElementsByTagName("input");
-    console.log(regForm);
+window.addEventListener("load", function () {
+  const regForm = document.getElementById("register-form");
+  const formFields = document.getElementsByTagName("input");
+  console.log(regForm);
 
-    regForm.addEventListener("submit",e=>{
-        e.preventDefault();
-        let uname = $('#uname').val();
-        let pwd = $('#pwd').val();
-        let email = $('#email').val();
+  regForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let uname = $("#uname").val();
+    let pwd = $("#pwd").val();
+    let email = $("#email").val();
 
-        let userData = {
-            uname : uname,
-            pwd : pwd,
-            email : email
-        }
+    let userData = {
+      uname: uname,
+      pwd: pwd,
+      email: email,
+    };
 
-        console.log(userData);
+    console.log(userData);
 
-        axios.post('/register', userData)
-        .then(response=>{
-            console.log(response);
-            alert(response.data.msg);
-            regForm.reset();
-            
-        })
-        .catch(error=>{
-            console.log(error);
-            alert(response.data.msg);
-        });
-
-    })
-
-})
-    
-
-
-
+    axios
+      .post("/register", userData)
+      .then((response) => {
+        console.log(response);
+        alert(response.data.msg);
+        window.location.href = "/login";
+      })
+      .catch((error) => {
+        console.log(error);
+        alert(response.data.msg);
+      });
+  });
+});
 
 // regForm.on("submit",(e)=>{
 //     e.preventDefault();
@@ -60,4 +54,3 @@ window.addEventListener("load",function(){
 //     });
 
 // })
-
