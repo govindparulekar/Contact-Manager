@@ -14,12 +14,16 @@
     <link rel="stylesheet" href="main.css">
     <title>Document</title>
 </head>
-<body class="vh-100 ">   
+<body>
 
-    <div class="navbar d-flex justify-content-between">
-        <span class="greeting">Hello, <%= username %>!</span>
-        <button id="logout-btn">Logout</button>
-      </div>
+<div class="d-flex vh-100 align-items-center">
+    <div class="greeting-cont">
+        <div id="greeting1">Hello, <%= username %>! Welcome to you personal contact manager! </div>
+		<div id="disc">
+			 Here you can manage your contacts. You can also create multiple accounts to catogorize your contacts for better management :)
+		</div>
+ 
+    </div>
     
 
     <div class="card" style="width: 18rem;">
@@ -61,7 +65,12 @@
 
           
           </div>
-      </div>
+    </div>
+</div>
+	
+	<div id="logout"
+		Need to logout ? click here 
+	</div>
     
 
       

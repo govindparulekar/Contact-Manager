@@ -1,12 +1,12 @@
 body{
     height: 100vh;
-    padding-top: 50px;
+    margin:0;
+	padding:0;
 }
 
 .card{
     height: 500px;
     max-height: 70%;
-    margin: auto;
     
 }
 .card-body{
@@ -121,3 +121,11 @@ body{
   }
 
   
+  .greeting-cont div{
+	  
+	  text-align: center;
+	  
+  }
+  #greeting1{
+	  justify-content: center;
+  }
