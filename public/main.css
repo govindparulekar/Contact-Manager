@@ -102,9 +102,9 @@ body {
   color: black;
 }
 #logout-btn {
-  background-color: #4caf50;
-  color: white;
-  border: none;
+  background-color: white;
+  color: #4caf50;
+ 
   padding: 10px 20px;
   text-align: center;
   text-decoration: none;
@@ -112,9 +112,12 @@ body {
   margin: 8px 4px;
   cursor: pointer;
   float: right;
+  border: #4caf50 1px ;
+  font-size: 1.2em
 }
-.logout-btn:hover {
-  background-color: #da190b;
+#logout-btn:hover {
+  background-color: #4caf50;
+  color: white;
 }
 
 .greeting-cont {
